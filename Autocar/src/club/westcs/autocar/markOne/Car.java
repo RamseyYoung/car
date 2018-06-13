@@ -17,6 +17,9 @@ import java.util.Random;
 		   private boolean insideLane; 
 		   private boolean firstMove;
 		   private Random rand;
+		   private int speed;
+		   private final int minSpeed = 1;
+		   private final int maxSpeed = 4;
 		   
 		   public Car() {
 			   super();
@@ -24,7 +27,7 @@ import java.util.Random;
 			   ender = false;
 			   insideLane = false;
 			   firstMove = true;
-			   
+			   speed = minSpeed;
 		   }  
 			
 		    public void act()
@@ -34,12 +37,32 @@ import java.util.Random;
 		    	}
 		        if (getGrid() == null)
 		            return;
-		        ArrayList<Location> moveLocs = getMoveLocations();
-		        Location loc = selectMoveLocation(moveLocs);
-		        makeMove(loc);
-		        if(this.ender) {
-		        	new Rock().putSelfInGrid(getGrid(), getLocation());
+		        /*
+		        Actor a = getGrid().get(this.getLocation().getAdjacentLocation(getDirection()));
+		        if(a != null)
+		        	a.removeSelfFromGrid();
+		        */
+		        for(int i = 0; i < speed;i++) {
+			        ArrayList<Location> moveLocs = getMoveLocations();
+			        Location loc = selectMoveLocation(moveLocs);
+			        if(speed > 1) {
+			        	Location place = this.getLocation();
+			        	makeMove(loc);
+			        	if(!place.equals(loc))
+			        		new Blur(this.getDirection()).putSelfInGrid(getGrid(), place);
+			        }
+			        else {
+			        	makeMove(loc);
+			        }
 		        }
+		    }
+		    
+		    public void setSpeed(int change) {
+		    	speed += change; 
+		    }
+		    
+		    public boolean getEnder() {
+		    	return this.ender;
 		    }
 		    
 		    public boolean changeLane() {
@@ -102,11 +125,13 @@ import java.util.Random;
 			        if(canMove()) {
 			        	locs.add(getLocation().getAdjacentLocation(getDirection()));
 			        }
+			        else if(changeLane()){
+			        }
 			        else {
 			        	turn();
 			        	if(!canMove() && !changeLane()) {
 			        		this.ender = true;
-			        	}
+			        	}	
 			        }
 		        else {
 		        	if(canMoveTurn()) {

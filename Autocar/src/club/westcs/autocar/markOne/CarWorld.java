@@ -8,7 +8,7 @@ import info.gridworld.grid.Location;
 
 public class CarWorld extends ActorWorld{
 	
-	public CarWorld(BoundedGrid boundedGrid) {
+	public CarWorld(Grid boundedGrid) {
 		super(boundedGrid);
 	}
 
@@ -19,19 +19,21 @@ public class CarWorld extends ActorWorld{
 	        for (Location loc : gr.getOccupiedLocations())
 	            actors.add(gr.get(loc));
 
-	        for (Actor a : actors)
+	        for (int i= 0; i < actors.size();i++) 
 	        {
-	            // only act if another actor hasn't removed a
-	            if (a.getGrid() == gr) {
-	            	Thread t1 = new Thread(new Runnable() 
+	        	Actor a = actors.get(i);
+	            if (a.getGrid() == gr && !(a instanceof Rock)) {
+	            /*	Thread t1 = new Thread(new Runnable() 
 	            			{
 	            		        public void run()
-	            		        {
+	            		        {    */
 	            		            a.act();
-	            		        }
-	  	              
+	            		   /*     }
 	            			});
-	            	t1.start();
+	            	t1.start(); */
+	            	if(a.getGrid() == gr && a instanceof Car && ((Car) a).getEnder()) {
+	            		new Rock().putSelfInGrid(getGrid(), a.getLocation());
+	            	}
 	                  
 	            }
 	        }

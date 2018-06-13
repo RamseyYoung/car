@@ -1,0 +1,40 @@
+package club.westcs.autocar.markOne;
+import java.util.ArrayList;
+
+import info.gridworld.actor.*;
+import info.gridworld.grid.BoundedGrid;
+import info.gridworld.grid.Grid;
+import info.gridworld.grid.Location;
+
+public class CarWorld extends ActorWorld{
+	
+	public CarWorld(BoundedGrid boundedGrid) {
+		super(boundedGrid);
+	}
+
+	@Override
+	public void step() {
+		 Grid<Actor> gr = getGrid();
+	        ArrayList<Actor> actors = new ArrayList<Actor>();
+	        for (Location loc : gr.getOccupiedLocations())
+	            actors.add(gr.get(loc));
+
+	        for (Actor a : actors)
+	        {
+	            // only act if another actor hasn't removed a
+	            if (a.getGrid() == gr) {
+	            	Thread t1 = new Thread(new Runnable() 
+	            			{
+	            		        public void run()
+	            		        {
+	            		            a.act();
+	            		        }
+	  	              
+	            			});
+	            	t1.start();
+	                  
+	            }
+	        }
+	}
+
+}
