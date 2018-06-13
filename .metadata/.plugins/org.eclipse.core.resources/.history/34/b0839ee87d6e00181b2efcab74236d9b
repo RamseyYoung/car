@@ -1,0 +1,29 @@
+package club.westcs.autocar.markOne;
+
+import info.gridworld.actor.ActorWorld;
+import info.gridworld.actor.Bug;
+import info.gridworld.actor.Rock;
+import info.gridworld.grid.BoundedGrid;
+import info.gridworld.grid.Location;
+
+public class CarRunner {
+
+
+    public static void main(String[] args)
+    {
+        ActorWorld world = new ActorWorld(new BoundedGrid(25,30));
+       
+        for(int row = 0, gridRows = world.getGrid().getNumRows() ; row < gridRows;row++) {
+        	for(int col = 0, gridCols = world.getGrid().getNumCols(); col < gridCols; col++) {
+        		if(row == 0 || col == 0 || row == gridRows-1 || col == gridCols -1 )
+        			world.add(new Location(row,col), new Road());
+        		if( (row >= 3 && col >= 3 ) && (row <= gridRows-4 && col <= gridCols - 4) )
+        			world.add(new Location(row,col), new Road());
+        	}
+        	
+        }
+        world.add(new Location(1,1), new Car());
+        world.show();
+    }
+
+}

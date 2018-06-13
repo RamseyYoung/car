@@ -1,0 +1,7 @@
+package club.westcs.autocar.markOne;
+
+import info.gridworld.actor.Critter;
+
+public class Car extends Critter {
+
+}

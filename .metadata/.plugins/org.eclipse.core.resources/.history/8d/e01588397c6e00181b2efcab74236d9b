@@ -1,0 +1,137 @@
+package club.westcs.autocar.markOne;
+
+	import info.gridworld.actor.Critter;
+	import info.gridworld.grid.Grid;
+	import info.gridworld.grid.Location;
+	import info.gridworld.actor.*;
+	import java.util.ArrayList;
+import java.util.Random;
+
+		
+		
+		public class Car extends Actor
+		{
+		   private boolean ender;
+		   private boolean insideLane; 
+		   private boolean firstMove;
+		   private Random rand;
+		   
+		   public Car() {
+			   super();
+			   rand = new Random();
+			   ender = false;
+			   insideLane = false;
+			   firstMove = true;
+			   this.setColor(new Color(rand.nextInt(255),rand.nextInt(255),rand.nextInt(255)));
+		   }
+			
+			
+		    public void act()
+		    {
+		    	if(this.firstMove) {
+		    		this.firstMove = false;
+		    		Actor a = getGrid().get(getLocation().getAdjacentLocation(getLocation().NORTH));
+		    		if( a == null) {
+						   insideLane = true; 
+					   }
+		    	}
+		        if (getGrid() == null)
+		            return;
+		        
+		        
+		       
+		        
+		        
+		        ArrayList<Location> moveLocs = getMoveLocations();
+		        Location loc = selectMoveLocation(moveLocs);
+		        makeMove(loc);
+		        if(this.ender) {
+		        	new Rock().putSelfInGrid(getGrid(), getLocation());
+		        }
+		    }
+
+		   
+		    public boolean canMove()
+		    {
+		        Grid<Actor> gr = getGrid();
+		        if (gr == null)
+		            return false;
+		        Location loc = getLocation();
+		        Location next = loc.getAdjacentLocation(getDirection());
+		        if (!gr.isValid(next))
+		            return false;
+		        Actor neighbor = gr.get(next);
+		        return (neighbor == null) || (neighbor instanceof Flower);
+		}
+		    
+		    public boolean canMoveTurn()
+		    {
+		        Grid<Actor> gr = getGrid();
+		        if (gr == null)
+		            return false;
+		        Location loc = getLocation();
+		        Location next = loc.getAdjacentLocation(getDirection() + Location.RIGHT);
+		        if (!gr.isValid(next))
+		            return false;
+		        Actor neighbor = gr.get(next);
+		        return (neighbor == null) || (neighbor instanceof Flower);
+		}
+		
+		    public ArrayList<Location> getMoveLocations()
+		    {
+		        ArrayList<Location> locs =  new ArrayList<Location>();
+		        if(!insideLane)
+			        if(canMove()) {
+			        	locs.add(getLocation().getAdjacentLocation(getDirection()));
+			        }
+			        else {
+			        	turn();
+			        	if(!canMove()) {
+			        		this.ender = true;
+			        	}
+			        }
+		        else {
+		        	if(canMoveTurn()) {
+		        		turn();
+		        		locs.add(getLocation().getAdjacentLocation(getDirection()));
+		        	}
+		        	else if(canMove()) {
+		        		locs.add(getLocation().getAdjacentLocation(getDirection()));
+		        	}
+		        	else {
+		        		this.ender = true;
+		        	}
+		        	
+		        }
+		        
+		        return locs;
+		    }
+		    
+		    public void turn()
+		    {
+		        setDirection(getDirection() + Location.RIGHT );
+		    }
+
+		   
+		   
+		    
+		    public Location selectMoveLocation(ArrayList<Location> locs)
+		    {
+		        int n = locs.size();
+		        if (n == 0)
+		            return getLocation();
+		        int r = (int) (Math.random() * n);
+		        return locs.get(r);
+		    }
+
+		  
+		    public void makeMove(Location loc)
+		    {
+		        if (loc == null)
+		            removeSelfFromGrid();
+		        else
+		            moveTo(loc);
+		    }
+		}
+
+
