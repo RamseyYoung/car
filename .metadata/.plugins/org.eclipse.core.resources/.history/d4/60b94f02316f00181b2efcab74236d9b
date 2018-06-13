@@ -28,11 +28,11 @@ public class CarRunner {
         	}
         	
         }
-        for(int i =0; i < rand.nextInt(5)  +1; i++) {
-        	world.add(new Location(2,rand.nextInt(world.getGrid().getNumCols()-5) + 3), new Car());
+        for(int i =0; i < rand.nextInt(3)  +1; i++) {
+        	world.add(new Location(2,rand.nextInt(world.getGrid().getNumCols()-3) + 1), new Car());
         }
-        for(int i =0; i < rand.nextInt(5)  +1; i++) {
-        	world.add(new Location(1,rand.nextInt(world.getGrid().getNumCols()-5) + 3), new Car());
+        for(int i =0; i < rand.nextInt(3)  +1; i++) {
+        	world.add(new Location(1,rand.nextInt(world.getGrid().getNumCols()-3) + 1), new Car());
         }
         world.show();
     }

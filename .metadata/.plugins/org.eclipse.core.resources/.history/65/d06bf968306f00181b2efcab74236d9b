@@ -41,19 +41,16 @@ import java.util.Random;
 		        	new Rock().putSelfInGrid(getGrid(), getLocation());
 		        }
 		    }
-		    
-		    public void changeLane() {
-		    	Actor a = getGrid().get(this.getLocation().getAdjacentLocation(getDirection() + 45));
-		    	Actor b = getGrid().get(this.getLocation().getAdjacentLocation(getDirection() - 45));
-		    	if()
-		    }
+
 		    private void firstRun() {
-		    	this.firstMove = false;
+		    	//set the color
 			    Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.BLACK};
 	    		this.setColor(colors[rand.nextInt(colors.length)]);
+	    		
+	    		this.firstMove = false;
 	    		this.setDirection(Location.EAST);
 	    		Actor a = getGrid().get(getLocation().getAdjacentLocation(getLocation().NORTH));
-	    		if( a == null || a instanceof Car) {
+	    		if( a == null) {
 					   insideLane = true; 
 				   }
 		   }
