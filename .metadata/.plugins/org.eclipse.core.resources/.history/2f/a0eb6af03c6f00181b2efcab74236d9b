@@ -44,14 +44,14 @@ import java.util.Random;
 		    
 		    public boolean changeLane() {
 		    	Actor a = getGrid().get(this.getLocation().getAdjacentLocation(getDirection() + 45));
-		    	Actor b = getGrid().get(this.getLocation().getAdjacentLocation(getDirection() - 45));
+		    	Actor b = getGrid().get(this.getLocation().getAdjacentLocation(getDirection() - 135));
 		    	if(a == null || b == null) {
 		    		this.insideLane = !(this.insideLane); 
 		    		if(a==null) {
 		    			this.moveTo(this.getLocation().getAdjacentLocation(getDirection() + 45));
 		    		}
 		    		else {
-		    			this.moveTo(this.getLocation().getAdjacentLocation(getDirection() - 45));
+		    			this.moveTo(this.getLocation().getAdjacentLocation(getDirection() - 135));
 		    		}
 		    		return true;
 		    	}
@@ -106,6 +106,9 @@ import java.util.Random;
 			        	turn();
 			        	if(!canMove() && !changeLane()) {
 			        		this.ender = true;
+			        		System.out.println("One");
+			        		System.out.println(this.getLocation().getAdjacentLocation(getDirection() + 45));
+			        		System.out.println(this.getLocation().getAdjacentLocation(getDirection() - 135));
 			        	}
 			        }
 		        else {
@@ -118,6 +121,9 @@ import java.util.Random;
 		        	}
 		        	else {
 		        		if(!changeLane()) {
+		        			System.out.println("Two");
+		        			System.out.println(this.getLocation().getAdjacentLocation(getDirection() + 45));
+			        		System.out.println(this.getLocation().getAdjacentLocation(getDirection() - 135));
 		        			this.ender = true;
 		        		}
 		        	}

@@ -106,6 +106,8 @@ import java.util.Random;
 			        	turn();
 			        	if(!canMove() && !changeLane()) {
 			        		this.ender = true;
+			        		System.out.println(this.getLocation().getAdjacentLocation(getDirection() + 45));
+			        		System.out.println(this.getLocation().getAdjacentLocation(getDirection() - 45));
 			        	}
 			        }
 		        else {
@@ -117,9 +119,8 @@ import java.util.Random;
 		        		locs.add(getLocation().getAdjacentLocation(getDirection()));
 		        	}
 		        	else {
-		        		if(!changeLane()) {
+		        		if(!changeLane())
 		        			this.ender = true;
-		        		}
 		        	}
 		        	
 		        }

@@ -1,0 +1,11 @@
+package club.westcs.autocar.markOne;
+import info.gridworld.actor.*;
+
+public class CarWorld extends ActorWorld{
+	
+	@Override
+	public void step() {
+		
+	}
+
+}

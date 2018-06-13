@@ -117,9 +117,8 @@ import java.util.Random;
 		        		locs.add(getLocation().getAdjacentLocation(getDirection()));
 		        	}
 		        	else {
-		        		if(!changeLane()) {
+		        		if(!changeLane())
 		        			this.ender = true;
-		        		}
 		        	}
 		        	
 		        }
