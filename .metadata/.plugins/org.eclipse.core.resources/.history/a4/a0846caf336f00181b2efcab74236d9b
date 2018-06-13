@@ -49,7 +49,6 @@ import java.util.Random;
 		    		this.insideLane = !(this.insideLane); 
 		    	}
 		    }
-		    
 		    private void firstRun() {
 		    	this.firstMove = false;
 			    Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.BLACK};

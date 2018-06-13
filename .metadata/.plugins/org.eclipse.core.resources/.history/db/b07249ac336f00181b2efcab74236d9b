@@ -46,10 +46,9 @@ import java.util.Random;
 		    	Actor a = getGrid().get(this.getLocation().getAdjacentLocation(getDirection() + 45));
 		    	Actor b = getGrid().get(this.getLocation().getAdjacentLocation(getDirection() - 45));
 		    	if(a == null || b == null) {
-		    		this.insideLane = !(this.insideLane); 
+		    		this.insideLane = !this.insideLane; 
 		    	}
 		    }
-		    
 		    private void firstRun() {
 		    	this.firstMove = false;
 			    Color[] colors = {Color.RED, Color.BLUE, Color.GREEN, Color.BLACK};
