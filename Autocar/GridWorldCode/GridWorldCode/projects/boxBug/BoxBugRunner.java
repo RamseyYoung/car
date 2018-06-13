@@ -37,4 +37,9 @@ public class BoxBugRunner
         world.add(new Location(5, 5), bob);
         world.show();
     }
+    
+    private static void test()
+    {
+        System.out.println("Hello?");
+    }
 }
