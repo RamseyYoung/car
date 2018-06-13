@@ -38,7 +38,7 @@ public class BoxBugRunner
         world.show();
     }
     
-    private static void test()
+    public static void test()
     {
         System.out.println("Hello?");
     }
