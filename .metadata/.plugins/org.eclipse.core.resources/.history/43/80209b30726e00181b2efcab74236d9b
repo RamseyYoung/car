@@ -1,5 +1,0 @@
-package club.westcs.autocar.markOne;
-
-public class Car extends Critter {
-
-}

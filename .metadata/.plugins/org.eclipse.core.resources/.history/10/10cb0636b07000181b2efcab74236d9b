@@ -18,28 +18,25 @@ public class CarWorld extends ActorWorld{
 	        ArrayList<Actor> actors = new ArrayList<Actor>();
 	        for (Location loc : gr.getOccupiedLocations())
 	            actors.add(gr.get(loc));
-	       // Thread[] threads = new Thread[actors.size()];
+	        Thread[] threads = new Thread[actors.size()];
 	        for (int i= 0; i < actors.size();i++) 
 	        {
 	        	Actor a = actors.get(i);
 	            if (a.getGrid() == gr && !(a instanceof Rock)) {
-//	            Thread t1 = new Thread(new Runnable() 
-//	            			{
-//	            		        public void run()
-//	            		        {    
+	            Thread t1 = new Thread(new Runnable() 
+	            			{
+	            		        public void run()
+	            		        {    
 	            		            a.act();
-//	            		       }
-//	            			});
-//	            	threads[i] = t1; 
+	            		       }
+	            			});
+	            	threads[i] = t1; 
 	            	if(a.getGrid() == gr && a instanceof Car && ((Car) a).getEnder()) {
 	            		new Rock().putSelfInGrid(getGrid(), a.getLocation());
 	            	}
 	                  
 	            }
 	        }
-//	        for(Thread t: threads) {
-//	        	t.start();
-//	        }
 	}
 
 }

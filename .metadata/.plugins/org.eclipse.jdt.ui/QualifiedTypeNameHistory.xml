@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="info.gridworld.actor.Rock"/>
+<fullyQualifiedTypeName name="info.gridworld.actor.Critter"/>
+<fullyQualifiedTypeName name="info.gridworld.grid.BoundedGrid"/>
+<fullyQualifiedTypeName name="info.gridworld.grid.Location"/>
+<fullyQualifiedTypeName name="info.gridworld.actor.Actor"/>
+<fullyQualifiedTypeName name="java.util.Random"/>
+<fullyQualifiedTypeName name="info.gridworld.actor.Flower"/>
+<fullyQualifiedTypeName name="java.awt.Color"/>
+</qualifiedTypeNameHistroy>
